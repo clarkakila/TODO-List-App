@@ -1,0 +1,51 @@
+-- =========================================================
+-- TODOLIST-DatabaseBuild
+--   This script builds the TODOLIST database and inserts data
+-- into the List table.
+-- =========================================================
+
+-- -----------------------------------------------------
+-- Save selected MySQL settings
+-- -----------------------------------------------------
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Delete and create database
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `TODOLIST` ;
+CREATE SCHEMA IF NOT EXISTS `TODOLIST` DEFAULT CHARACTER SET utf8 ;
+
+-- -----------------------------------------------------
+-- Switch to List database
+-- -----------------------------------------------------
+USE `TODOLIST` ;
+
+-- -----------------------------------------------------
+-- Delete and create table `TODOLIST`.`List`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `TODOLIST`.`List` ;
+
+CREATE TABLE IF NOT EXISTS `TODOLIST`.`List` (
+  `ListID` INT NOT NULL AUTO_INCREMENT,
+  `ToDo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ListID`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Insert data into table `TODOLIST`.`LIST`
+-- -----------------------------------------------------
+DELETE FROM List;
+INSERT INTO List (ToDo) VALUES 
+  ('Eat dinner'),
+  ('Feed Fish'),
+  ('Do homework');
+SELECT * FROM List;
+
+-- -----------------------------------------------------
+-- Restore saved MySQL settings
+-- -----------------------------------------------------
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
